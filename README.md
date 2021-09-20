@@ -1,1 +1,1 @@
-New small project to call to mind how to work with objects
+New small project to call to mind how to work with objects. On this project i will name the branches with steps(1, 2, etc);
