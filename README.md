@@ -1,1 +1,1 @@
-New small project to remember ho to work with objects
+New small project to call to mind how to work with objects
