@@ -21,10 +21,12 @@
 
     if(personalMovieDB.count < 10) {
         alert("You watched just a few movies.");
-    } else if(10 < personalMovieDB.count && personalMovieDB.count < 30) {
+    } else if(10 <= personalMovieDB.count && personalMovieDB.count < 30) {
         alert("You are ordinary viewer.");
-    } else {
+    } else if(personalMovieDB.count >= 30) {
         alert("You are movie fan.");
+    } else {
+        alert("Error.");
     }
 
     console.log(personalMovieDB.movies);
