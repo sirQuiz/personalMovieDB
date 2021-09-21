@@ -10,9 +10,21 @@
     };
 
     for(let i = 0; i < 2; i++) {
-        lastSeenMovie = prompt("What was the last movie you saw?", "None");
-        rateMovie     = prompt("Rate last movie you saw.", "0");
-        personalMovieDB.movies[lastSeenMovie] = rateMovie;
+            lastSeenMovie = prompt("What was the last movie you saw?", "None");
+            rateMovie     = prompt("Rate last movie you saw.", "");  
+        if(lastSeenMovie == "" || rateMovie == "" || lastSeenMovie == null || rateMovie == null || lastSeenMovie.length > 50) {
+            i--;    
+        } else {   
+            personalMovieDB.movies[lastSeenMovie] = rateMovie;
+        }
+    }
+
+    if(personalMovieDB.count < 10) {
+        alert("You watched just a few movies.");
+    } else if(10 < personalMovieDB.count && personalMovieDB.count < 30) {
+        alert("You are ordinary viewer.");
+    } else {
+        alert("You are movie fan.");
     }
 
     console.log(personalMovieDB.movies);
