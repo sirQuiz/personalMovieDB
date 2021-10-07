@@ -1,19 +1,17 @@
 (function(){
-    let nubmerOfFilms, lastSeenMovie, rateMovie;
-    
-    function start() {
-        while(nubmerOfFilms == '' || nubmerOfFilms == null || isNaN(nubmerOfFilms)) {
-            nubmerOfFilms = +prompt("How many films did you watch?", "");
-        }
-    }
-    start();
-
+    let lastSeenMovie, rateMovie;
+ 
     const personalMovieDB = {
-        count: nubmerOfFilms,
+        count: 0,
         movies: {},
         actors: {},
         genres: [],
         privat: false,
+        start: function() {
+            while(this.count == '' || this.count == null || isNaN(this.count)) {
+                this.count = +prompt("How many films did you watch?", "");
+            }
+        },
         userMoviesAndRates: function(lastMovies) {
             for(let i = 0; i < 2; i++) {
                 lastSeenMovie = prompt("What was the last movie you saw?", "None");
@@ -39,22 +37,39 @@
         },
         showUserDB: function(hidden) {
             if(!hidden) {
-                console.log(personalMovieDB);
+                console.log(this);
             } else {
                 console.log("Movie DataBase is privat.");
+            }
+        },
+        toggleVisibleMyDB: function(hidden) {
+            if(!hidden) {
+                this.privat = true;
+            } else {
+                this.privat = false;
             }
         },
         writeYourGenres: function(genres) {
             for(let i = 0; i < 3; i++) {
                 const userGenre = prompt(`You favorite genre on ${i+1} place`, "");
-                genres[i] = userGenre;
+                if(userGenre == '' || userGenre == null) {
+                    i--;
+                } else {
+                    genres[i] = userGenre;
+                }
             }
+
+            personalMovieDB.genres.forEach((item, index) => {
+                console.log(`Favorite genre ${index + 1} is - ${item}`);
+            });
         }
     };
 
+    personalMovieDB.start(personalMovieDB.count);
     personalMovieDB.userMoviesAndRates(personalMovieDB.movies);
     personalMovieDB.userMovieStatus(personalMovieDB.count);
     personalMovieDB.showUserDB(personalMovieDB.privat);
+    personalMovieDB.toggleVisibleMyDB(personalMovieDB.privat);
     personalMovieDB.writeYourGenres(personalMovieDB.genres);
 
 }());
